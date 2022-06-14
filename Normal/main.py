@@ -6,7 +6,9 @@ from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 
-images = 'E:/tmp/'
+images_folder = 'E:/tmp/'
+device = 'cpu'
+
 trans_form = transforms.Compose([
     transforms.Resize(size=(96, 96)),
     transforms.CenterCrop(size=(96, 96)),
@@ -14,8 +16,8 @@ trans_form = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 
 ])
-data_set = ImageFolder(images, transform=trans_form)
-data_loader = DataLoader(data_set, shuffle=True)
+data_set = ImageFolder(images_folder, transform=trans_form)
+data_loader = DataLoader(data_set, shuffle=True, batch_size=128)
 
 g_net = GeneratorNet(noise_channel=128)
 g = Generator(g_net)
@@ -23,7 +25,7 @@ g = Generator(g_net)
 d_net = DiscriminatorNet()
 d = Discriminator(d_net)
 
-gan = NormalGAN(g, d)
+gan = NormalGAN(g, d, device=device)
 
 gan.train(data_loader, max_epoch=10000)
 
