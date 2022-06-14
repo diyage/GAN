@@ -6,8 +6,8 @@ from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 
-images_folder = 'E:/tmp/'
-device = 'cpu'
+images_folder = '/home/dell/data/Faces'
+device = 'cuda:1'
 
 trans_form = transforms.Compose([
     transforms.Resize(size=(96, 96)),

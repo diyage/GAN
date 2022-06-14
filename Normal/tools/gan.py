@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import os
 from torch.utils.data import Dataset, DataLoader
 
-ABS_PATH = ''
+ABS_PATH = '/home/dell/data2/models/'
 
 
 class NormalGAN:
