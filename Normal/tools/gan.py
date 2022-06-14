@@ -70,9 +70,9 @@ class NormalGAN:
               data_loader: DataLoader,
               max_epoch):
 
-        for _ in tqdm(range(max_epoch)):
+        for epoch in tqdm(range(max_epoch)):
             self.train_one_epoch(data_loader)
-            self.eval(ABS_PATH + os.getcwd() + '/eval_images/')
+            self.eval(ABS_PATH + os.getcwd() + '/eval_images/{}/'.format(epoch))
 
     def eval(self,
              save_path: str = '',
