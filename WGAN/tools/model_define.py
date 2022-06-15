@@ -31,7 +31,7 @@ class Generator(nn.Module):
         )
 
     def forward(self, x: torch.Tensor):
-        return self.__net(x.view(-1, self.noise_channel, 1, 1))
+        return self.__net(x.view(-1, opt.g_noise_channel, 1, 1))
 
 
 class Discriminator(nn.Module):
