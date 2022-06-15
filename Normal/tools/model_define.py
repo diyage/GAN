@@ -40,22 +40,22 @@ class DiscriminatorNet(nn.Module):
         self.__net = nn.Sequential(
             nn.Conv2d(3, n_channel, kernel_size=(5, 5), stride=(3, 3), padding=(1, 1)),
             nn.BatchNorm2d(n_channel),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(0.2),
             # 32*32*n_channel
 
             nn.Conv2d(n_channel, n_channel * 2, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1)),
             nn.BatchNorm2d(n_channel * 2),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(0.2),
             # 16*16*(n_channel*2)
 
             nn.Conv2d(n_channel * 2, n_channel * 4, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1)),
             nn.BatchNorm2d(n_channel * 4),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(0.2),
             # 8*8*(n_channel*4)
 
             nn.Conv2d(n_channel * 4, n_channel * 8, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1)),
             nn.BatchNorm2d(n_channel * 8),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(0.2),
             # 4*4*(n_channel*8)
 
             nn.Conv2d(n_channel * 8, 1, kernel_size=(4, 4), stride=(1, 1), padding=(0, 0)),
