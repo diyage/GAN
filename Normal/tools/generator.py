@@ -9,7 +9,7 @@ class Generator:
                  optimizer: torch.optim.Optimizer = None):
         self.model = model
         if optimizer is None:
-            self.optimizer = torch.optim.Adam(self.model.parameters(), 2e-4)
+            self.optimizer = torch.optim.Adam(self.model.parameters(), 2e-4, betas=(0.5, 0.999))
         else:
             self.optimizer = optimizer
 

@@ -17,9 +17,9 @@ trans_form = transforms.Compose([
 
 ])
 data_set = ImageFolder(images_folder, transform=trans_form)
-data_loader = DataLoader(data_set, shuffle=True, batch_size=128)
+data_loader = DataLoader(data_set, shuffle=True, batch_size=256)
 
-g_net = GeneratorNet(noise_channel=128)
+g_net = GeneratorNet(noise_channel=100)
 g = Generator(g_net)
 
 d_net = DiscriminatorNet()
