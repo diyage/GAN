@@ -145,9 +145,16 @@ class CycleGAN:
             fake_img = fake_img.cpu().detach().numpy()  # type: np.ndarray
             fake_img = np.transpose(fake_img, axes=(0, 2, 3, 1))
 
+            real_img = real_img.cpu().detach().numpy()  # type: np.ndarray
+            real_img = np.transpose(real_img, axes=(0, 2, 3, 1))
+
             for index in range(self.opt.BATCH_SIZE):
                 os.makedirs(save_to, exist_ok=True)
-                saved_file_name = os.path.join(save_to, '{}.png'.format(index))
+
+                saved_file_name = os.path.join(save_to, '{}_original_style.png'.format(index))
+                plt.imsave(saved_file_name, real_img[index])
+                
+                saved_file_name = os.path.join(save_to, '{}_fake_style.png'.format(index))
                 plt.imsave(saved_file_name, fake_img[index])
 
         for _, (real_a, real_b) in enumerate(data_loader):
