@@ -32,5 +32,5 @@ d_b = Discriminator(opt.n_D_layers, opt.input_nc_B).to(opt.device)
 
 w_gan = CycleGAN(g_a_to_b, g_b_to_a, d_a, d_b, opt)
 
-w_gan.train(data_loader_train)
+w_gan.train(data_loader_train, data_loader_test)
 
