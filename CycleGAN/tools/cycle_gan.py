@@ -141,6 +141,7 @@ class CycleGAN:
             g.eval()
             fake_img = g(real_img)
             fake_img = fake_img * 0.5 + 0.5  # type:torch.Tensor
+            real_img = real_img * 0.5 + 0.5  # type:torch.Tensor
 
             fake_img = fake_img.cpu().detach().numpy()  # type: np.ndarray
             fake_img = np.transpose(fake_img, axes=(0, 2, 3, 1))
@@ -153,7 +154,7 @@ class CycleGAN:
 
                 saved_file_name = os.path.join(save_to, '{}_original_style.png'.format(index))
                 plt.imsave(saved_file_name, real_img[index])
-                
+
                 saved_file_name = os.path.join(save_to, '{}_fake_style.png'.format(index))
                 plt.imsave(saved_file_name, fake_img[index])
 
