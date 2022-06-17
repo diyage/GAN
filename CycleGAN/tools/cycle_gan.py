@@ -140,6 +140,7 @@ class CycleGAN:
         def eval_one_generator(g: Generator, real_img, save_to: str):
             g.eval()
             fake_img = g(real_img)
+
             fake_img = fake_img * 0.5 + 0.5  # type:torch.Tensor
             real_img = real_img * 0.5 + 0.5  # type:torch.Tensor
 
@@ -152,17 +153,18 @@ class CycleGAN:
             for index in range(self.opt.BATCH_SIZE):
                 os.makedirs(save_to, exist_ok=True)
 
-                saved_file_name = os.path.join(save_to, '{}_original_style.png'.format(index))
+                saved_file_name = os.path.join(save_to, '{}_original_style.png'.format(eval_start_index + index))
                 plt.imsave(saved_file_name, real_img[index])
 
-                saved_file_name = os.path.join(save_to, '{}_fake_style.png'.format(index))
+                saved_file_name = os.path.join(save_to, '{}_fake_style.png'.format(eval_start_index + index))
                 plt.imsave(saved_file_name, fake_img[index])
-
+        eval_start_index = 0
         for _, (real_a, real_b) in enumerate(data_loader):
             save_path_for_a = os.path.join(save_path, 'fake_a_style')
             save_path_for_b = os.path.join(save_path, 'fake_b_style')
             eval_one_generator(self.g_a_to_b, real_a.to(self.opt.device), save_to=save_path_for_b)
             eval_one_generator(self.g_b_to_a, real_b.to(self.opt.device), save_to=save_path_for_a)
+            eval_start_index += real_a.shape[0]
 
     def train(self,
               data_loader_train: DataLoader,
