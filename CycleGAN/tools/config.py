@@ -16,7 +16,7 @@ class BaseConfig:
     BATCH_SIZE: int = 1
     MAX_EPOCH: int = 10000
     ABS_PATH: str = '/home/dell/data2/models/'
-    data_set_root: str = '/home/dell/data/cat/grumpifycat/'
+    data_set_root: str = '/home/dell/data/Cat/grumpifycat/'
 
 
 
